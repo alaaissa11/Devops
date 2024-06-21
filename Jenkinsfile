@@ -40,7 +40,14 @@ pipeline {
              stage('upload war file to nexus'){
             steps{
                  script{
-                nexusArtifactUploader artifacts: [[artifactId: 'DevOps_Project', classifier: '', file: 'target/DevOps_Project-1.0.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'tn.esprit', nexusUrl: '192.168.50.27:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ExamenAlaaissa-release', version: '1.0'
+               nexusArtifactUploader artifacts: [[artifactId: 'DevOps_Project', classifier: '', file: 'target/DevOps_Project-1.0.jar', type: 'jar']],
+                credentialsId: 'nexus-admin', 
+                groupId: 'tn.esprit', 
+                nexusUrl: '192.168.50.27:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'ExamenAlaaissa-release', 
+                version: '1.0'
                 }
                }
             }
