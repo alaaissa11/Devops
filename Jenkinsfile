@@ -37,7 +37,7 @@ pipeline {
                 }
                }
             }
-             stage('upload war file to nexus'){
+             stage('upload jar file to nexus'){
             steps{
                  script{
                nexusArtifactUploader artifacts: [[artifactId: 'DevOps_Project', classifier: '', file: 'target/DevOps_Project-1.0.jar', type: 'jar']],
