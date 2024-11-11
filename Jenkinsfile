@@ -33,13 +33,7 @@
                 }
             }
         }
-        stage('QUality gate statu') {
-                    steps {
-                        script {
-                            waitForQualityGate abortPipeline: false, credentialsId: 'foyerbloc-api'
-                        }
-                    }
-        }
+
 
 
 
