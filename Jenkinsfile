@@ -33,6 +33,27 @@
                 }
             }
         }
+        stage('Nexus Deploy') {
+            steps {
+                script {
+                      nexusArtifactUploader artifacts:
+                        [
+                        [artifactId: 'DevOps_Project',
+                        classifier: '', 
+                        file: 'target/DevOps_Project-0.0.1-SNAPSHOT.jar',
+                         type: 'jar']
+                        ],
+                        credentialsId: 'bloc-auth',
+                        groupId: 'tn.esprit',
+                        nexusUrl: '192.168.1.130:8081', 
+                        nexusVersion: 'nexus3',
+                        protocol: 'http', 
+                        repository: 'maven-snapshots', 
+                        version: '0.0.1-SNAPSHOT'
+
+                }
+            }
+        }
 
 
 
@@ -40,3 +61,4 @@
 
     }
 }
+
