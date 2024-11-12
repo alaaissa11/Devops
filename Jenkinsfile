@@ -54,16 +54,19 @@
                 }
             }
         }
-       stage('Docker Image Build') {
+        stage('Docker Image Build') {
             steps {
                 script {
-                   
-                    sh "docker image build -t \"$JOB_NAME:v1.$BUILD_ID\" ."
-                    sh "docker image tag \"$JOB_NAME:v1.$BUILD_ID\" alaaissa469/\"$JOB_NAME:v1.$BUILD_ID\""
-                    sh "docker image tag \"$JOB_NAME:v1.$BUILD_ID\" alaaissa469/\"$JOB_NAME:latest\""
+                    // Convertir le nom de JOB_NAME en minuscules pour respecter les règles Docker
+                    def imageName = "$JOB_NAME".toLowerCase()
+
+                    // Construire l'image Docker avec un nom conforme à Docker
+                    sh "docker image build -t ${imageName}:v1.${BUILD_ID} ."
+                    sh "docker image tag ${imageName}:v1.${BUILD_ID} alaaissa469/${imageName}:v1.${BUILD_ID}"
+                    sh "docker image tag ${imageName}:v1.${BUILD_ID} alaaissa469/${imageName}:latest"
                 }
             }
-}
+        }
 
 
 
