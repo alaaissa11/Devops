@@ -67,13 +67,20 @@
                 }
             }
         }
-         stage('Push image dockerhub') {
-            steps {
+        stage('Push image dockerhub') {
+           steps {
                 script {
-                   withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')]) {
-                    sh'docker login -u alaaissa469 -p ${docker_hub_cred}'
-                    sh'docker image push alaaissa469/$JOB_NAME:v1.$BUILD.ID'
-                    sh'docker image push alaaissa469/$JOB_NAME:latest'
+                  withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')])
+                   {
+                    // Convertir le nom de JOB_NAME en minuscules
+                    def imageName = JOB_NAME.toLowerCase()
+                    
+                    // Connexion à Docker Hub
+                    sh 'echo "${docker_hub_cred}" | docker login -u alaaissa469 --password-stdin'
+                    
+                    // Pousser les images vers Docker Hub
+                    sh "docker image push alaaissa469/${imageName}:v1.${BUILD_ID}"
+                    sh "docker image push alaaissa469/${imageName}:latest"
                    }
                 }
             }
