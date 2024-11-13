@@ -67,6 +67,17 @@
                 }
             }
         }
+         stage('Push image dockerhub') {
+            steps {
+                script {
+                   withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')]) {
+                    sh'docker login -u alaaissa469 -p ${docker_hub_cred}'
+                    sh'docker image push alaaissa469/$JOB_NAME:v1.$BUILD.ID'
+                    sh'docker image push alaaissa469/$JOB_NAME:latest'
+                   }
+                }
+            }
+        }
 
 
 
