@@ -1,5 +1,5 @@
 
-FROM maven:4.0-openjdk-11-slim as build
+FROM maven:3.8.7-openjdk-11-slim as build
 WORKDIR /devopsala
 COPY . .
 RUN mvn install -e
