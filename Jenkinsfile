@@ -70,7 +70,7 @@
         stage('Push image dockerhub') {
            steps {
                 script {
-                  withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')])
+                  withCredentials([string(credentialsId: 'docker_hub_cred', variable: 'docker_hub_cred')])
                    {
                     // Convertir le nom de JOB_NAME en minuscules
                     def imageName = JOB_NAME.toLowerCase()
