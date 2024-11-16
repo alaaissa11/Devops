@@ -75,11 +75,11 @@
                     def imageName = JOB_NAME.toLowerCase()
                     
                     // Connexion à Docker Hub
-                    sh 'echo "${docker_hub_cred}" | docker login -u alaaissa469 --password-stdin'
+                    sh 'docker login -u alaaissa469 -p 1.Alaaissa'
                     
                     // Pousser les images vers Docker Hub
-                    sh "docker image push alaaissa469/${imageName}:v1.${BUILD_ID}"
-                    sh "docker image push alaaissa469/${imageName}:latest"
+                    sh 'docker image push alaaissa469/${imageName}:v1.${BUILD_ID}'
+                    sh 'docker image push alaaissa469/${imageName}:latest'
                      }
                 }
             }
