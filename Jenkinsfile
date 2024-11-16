@@ -63,7 +63,7 @@
                     // Construire l'image Docker avec un nom conforme à Docker
                     sh "docker image build -t ${imageName}:v1.${BUILD_ID} ."
                     sh "docker image tag ${imageName}:v1.${BUILD_ID} alaaissa469/${imageName}:v1.${BUILD_ID}"
-                    sh "docker image tag ${imageName}:v1.${BUILD_ID} alaaissa469/${imageName}:latest"
+                    // sh "docker image tag ${imageName}:v1.${BUILD_ID} alaaissa469/${imageName}:latest"
                 }
             }
         }
@@ -79,7 +79,7 @@
                     
                     // Pousser les images vers Docker Hub
                     sh 'docker image push alaaissa469/${imageName}:v1.${BUILD_ID}'
-                    sh 'docker image push alaaissa469/${imageName}:latest'
+                    // sh 'docker image push alaaissa469/${imageName}:latest'
                      }
                 }
             }
