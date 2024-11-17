@@ -71,16 +71,15 @@
            steps {
                 script {
                   withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_cred')]) {
-                    // Convertir le nom de JOB_NAME en minuscules
+                    
                     def imageName = JOB_NAME.toLowerCase()
                     
-                    // Connexion à Docker Hub
-                    sh 'docker login -u alaaissa469 -p ${docker_hub_cred}'
-
+                   
+                    sh "docker login -u alaaissa469 -p ${docker_hub_cred}"
                     
-                    // Pousser les images vers Docker Hub
-                    sh 'docker image push alaaissa469/${imageName}:v1.${BUILD_ID}'
-                    // sh 'docker image push alaaissa469/${imageName}:latest'
+                    
+                    sh "docker image push alaaissa469/${imageName}:v1.${BUILD_ID}"
+                    
                      }
                 }
             }
