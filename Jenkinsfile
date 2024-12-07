@@ -88,7 +88,24 @@
         }
 
 
+        stage('Kubernetes Deploy') {
+            steps {
+                script {
+                    // Configurer le kubectl pour se connecter au cluster Minikube
+                    sh 'kubectl config use-context minikube'
 
+                    // Déployer l'image dans Kubernetes
+                    def imageTag = "v1.${BUILD_ID}"
+                    def imageName = "examenalaaissa"
+
+                    // Appliquer ou mettre à jour le déploiement Kubernetes
+                    sh """
+                    kubectl set image deployment/devops-project-deployment devops-project=alaaissa469/${imageName}:${imageTag}
+                    kubectl rollout status deployment/devops-project-deployment
+                    """
+                }
+            }
+        }
 
 
     }
